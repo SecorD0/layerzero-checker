@@ -1,4 +1,5 @@
 import logging
+import os
 import re
 import time
 import urllib.request
@@ -12,9 +13,9 @@ from utils.db_api.database import db
 from utils.db_api.models import MarkedAddress, ReportedAddress, Base
 
 
-def parse_data() -> None:
+def parse() -> None:
     try:
-        if db.all(MarkedAddress) or db.all(ReportedAddress):
+        if db.one(MarkedAddress) or db.one(ReportedAddress):
             print(
                 f"You've already parsed data about sybil addresses. Do you want to delete it and start over? "
                 f"({config.LIGHTGREEN_EX}y{config.RESET_ALL}/{config.RED}n{config.RESET_ALL})"
@@ -29,10 +30,11 @@ def parse_data() -> None:
             db.create_tables(Base)
 
         print(f'Downloading the {config.LIGHTGREEN_EX}initialList.txt{config.RESET_ALL} file from LayerZero GitHub...')
-        urllib.request.urlretrieve(
-            url='https://raw.githubusercontent.com/LayerZero-Labs/sybil-report/main/initialList.txt',
-            filename=config.initialList
-        )
+        if not os.path.isfile(config.initialList):
+            urllib.request.urlretrieve(
+                url='https://raw.githubusercontent.com/LayerZero-Labs/sybil-report/main/initialList.txt',
+                filename=config.initialList
+            )
 
         print(f'Importing addresses from the text file to the DB...')
         sybil_addresses = read_lines(config.initialList)
@@ -88,5 +90,5 @@ def parse_data() -> None:
         print(f'A total of {config.LIGHTGREEN_EX}{total_reported}{config.RESET_ALL} addresses were reported.')
 
     except BaseException as e:
-        logging.exception('parse_data')
-        print(f"\n{config.RED}Something went wrong in the 'parse_data' function: {e}{config.RESET_ALL}\n")
+        logging.exception('parse')
+        print(f"\n{config.RED}Something went wrong in the 'parse' function: {e}{config.RESET_ALL}\n")

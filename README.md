@@ -47,7 +47,7 @@
 ⠀The program use the following files and directories:
 - `files` — a user files directory:
   - `addresses.db` — a temporary database.
-  - `addresses.xlsx` — a spreadsheet for importing and viewing results.
+  - `addresses.xlsx` — a spreadsheet for specifying addresses and viewing results.
   - `errors.log` — a log file with errors that occurred during the work.
 - `layerzero-checker.exe` / `app.py` — an executable file that runs the program.
 
@@ -63,12 +63,11 @@
 2. Create a folder and put the EXE file into it.
 3. Run the program.
 4. Enter `1` and press `Enter` to parse data about sybil addresses.
-5. When the process is complete, press `Enter` to exit.
-6. Insert addresses to be checked into the `addresses.xlsx` spreadsheet, save and close it.
-7. Run the program again.
-8. Enter `2` and press `Enter` to check specified addresses if they are sybil. 
-9. Open the `addresses.xlsx` spreadsheet and switch to the `Results` sheet to view the result of the program.
-10. Delete the `addresses.db` file.
+5. Insert addresses to be checked into the `addresses.xlsx` spreadsheet, save and close it.
+6. Run the program again.
+7. Enter `2` and press `Enter` to check specified addresses if they are sybil. 
+8. Open the `addresses.xlsx` spreadsheet and switch to the `Results` sheet to view the result of the program.
+9. Delete the `files` directory.
 
 
 <h2><p align="center">Docker (image)</p></h2>
@@ -82,15 +81,14 @@
 docker run -it --rm -v $HOME/layerzero-checker/files:/program/files --name layerzero-checker ghcr.io/secord0/layerzero-checker:main
 ```
 3. Enter `1` and press `Enter` to parse data about sybil addresses.
-4. When the process is complete, press `Enter` to exit.
-5. Insert addresses to be checked into the `addresses.xlsx` spreadsheet, save and close it.
-6. Run the program again:
+4. Insert addresses to be checked into the `addresses.xlsx` spreadsheet, save and close it.
+5. Run the program again:
 ```sh
 docker run -it --rm -v $HOME/layerzero-checker/files:/program/files --name layerzero-checker ghcr.io/secord0/layerzero-checker:main
 ```
-7. Enter `2` and press `Enter` to check specified addresses if they are sybil. 
-8. Open the `addresses.xlsx` spreadsheet and switch to the `Results` sheet to view the result of the program.
-9. Delete the `addresses.db` file.
+6. Enter `2` and press `Enter` to check specified addresses if they are sybil. 
+7. Open the `addresses.xlsx` spreadsheet and switch to the `Results` sheet to view the result of the program.
+8. Delete the `files` directory.
 
 
 <h2><p align="center">Docker (building)</p></h2>
@@ -116,15 +114,14 @@ docker build -t layerzero-checker .
 docker run -it --rm -v $HOME/layerzero-checker/:/program --name layerzero-checker layerzero-checker
 ```
 6. Enter `1` and press `Enter` to parse data about sybil addresses.
-7. When the process is complete, press `Enter` to exit.
-8. Insert addresses to be checked into the `addresses.xlsx` spreadsheet, save and close it.
-9. Run the program again:
+7. Insert addresses to be checked into the `addresses.xlsx` spreadsheet, save and close it.
+8. Run the program again:
 ```sh
 docker run -it --rm -v $HOME/layerzero-checker/:/program --name layerzero-checker layerzero-checker
 ```
-10. Enter `2` and press `Enter` to check specified addresses if they are sybil. 
-11. Open the `addresses.xlsx` spreadsheet and switch to the `Results` sheet to view the result of the program.
-12. Delete the `addresses.db` file.
+9. Enter `2` and press `Enter` to check specified addresses if they are sybil. 
+10. Open the `addresses.xlsx` spreadsheet and switch to the `Results` sheet to view the result of the program.
+11. Delete the `files` directory.
 
 
 <h2><p align="center">Source code</p></h2>
@@ -145,12 +142,11 @@ pip install -r requirements.txt
 ```
 6. Run the `app.py`.
 7. Enter `1` and press `Enter` to parse data about sybil addresses.
-8. When the process is complete, press `Enter` to exit.
-9. Insert addresses to be checked into the `addresses.xlsx` spreadsheet, save and close it.
-10. Run the `app.py` again.
-11. Enter `2` and press `Enter` to check specified addresses if they are sybil. 
-12. Open the `addresses.xlsx` spreadsheet and switch to the `Results` sheet to view the result of the program.
-13. Delete the `addresses.db` file.
+8. Insert addresses to be checked into the `addresses.xlsx` spreadsheet, save and close it.
+9. Run the `app.py` again.
+10. Enter `2` and press `Enter` to check specified addresses if they are sybil. 
+11. Open the `addresses.xlsx` spreadsheet and switch to the `Results` sheet to view the result of the program.
+12. Delete the `files` directory.
 
 
 ⠀If you want to build the EXE file by yourself:

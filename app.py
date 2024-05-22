@@ -3,8 +3,8 @@ import logging
 from utils.miscellaneous.create_files import create_files
 from data import config
 from data.models import ProgramAction
-from functions.check_addresses import check_addresses
-from functions.parse_data import parse_data
+from functions.check import check
+from functions.parse import parse
 
 if __name__ == '__main__':
     print(f'\nSoftware version: {config.GREEN}{config.VERSION}{config.RESET_ALL}\n')
@@ -12,17 +12,17 @@ if __name__ == '__main__':
     while True:
         action = None
         print('''Select the action:
-1) Parse data about sybil addresses;
-2) Check specified addresses if they are sybil;
+1) Parse data about sybil addresses.
+2) Check specified addresses if they are sybil.
 3) Exit.''')
         try:
             action = int(input('> '))
             print()
-            if action == ProgramAction.ParseData:
-                parse_data()
+            if action == ProgramAction.Parse:
+                parse()
 
-            elif action == ProgramAction.CheckAddresses:
-                check_addresses()
+            elif action == ProgramAction.Check:
+                check()
 
             else:
                 break

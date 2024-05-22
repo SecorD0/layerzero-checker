@@ -8,7 +8,7 @@ from utils.db_api.database import db, get_checking_addresses
 from utils.db_api.models import MarkedAddress, ReportedAddress
 
 
-def check_addresses() -> None:
+def check() -> None:
     try:
         if not db.all(MarkedAddress) or not db.all(ReportedAddress):
             print(f'{config.RED}Start parsing data about sybil addresses first!{config.RESET_ALL}')
@@ -24,8 +24,12 @@ def check_addresses() -> None:
         print(f'Importing addresses from the spreadsheet to DB...')
         General.import_addresses()
 
-        print(f'\nn\taddress\tmarked_as_sybil\tnumber_of_reports\tissue_ids')
         checking_addresses = get_checking_addresses()
+        if not checking_addresses:
+            print(f"{config.RED}You didn't specify a single address!{config.RESET_ALL}")
+            return
+
+        print('\nn\t' + '\t'.join(list(db.execute('SELECT * FROM checking_addresses').keys())[1:]))
         total_marked = 0
         total_reported = 0
         n = 1
@@ -57,7 +61,8 @@ def check_addresses() -> None:
 {config.RED}{total_reported}/{len(checking_addresses)} ({round(total_reported / len(checking_addresses) * 100, 2)}%){config.RESET_ALL} addresses reported.''')
 
         General.export_addresses()
+        db.execute('DROP TABLE checking_addresses')
 
     except BaseException as e:
-        logging.exception('check_addresses')
-        print(f"\n{config.RED}Something went wrong in the 'check_addresses' function: {e}{config.RESET_ALL}\n")
+        logging.exception('check')
+        print(f"\n{config.RED}Something went wrong in the 'check' function: {e}{config.RESET_ALL}\n")

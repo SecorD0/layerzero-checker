@@ -34,4 +34,4 @@ ERRORS_FILE = os.path.join(FILES_DIR, 'errors.log')
 ADDRESSES_FILE = os.path.join(FILES_DIR, 'addresses.xlsx')
 initialList = os.path.join(FILES_DIR, 'initialList.txt')
 
-VERSION = '1.0.0'
+VERSION = '1.1.0'

@@ -1,3 +1,3 @@
 class ProgramAction:
-    ParseData = 1
-    CheckAddresses = 2
+    Parse = 1
+    Check = 2
