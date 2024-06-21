@@ -1,46 +1,36 @@
+from typing import Optional
+
 from pretty_utils.type_functions.classes import AutoRepr
-from sqlalchemy import (Column, Integer, Text, Boolean)
+from sqlalchemy import (Column, Integer, Text, Boolean, Float)
 from sqlalchemy.orm import declarative_base
 
 # --- Wallets
 Base = declarative_base()
 
 
-class MarkedAddress(Base, AutoRepr):
-    __tablename__ = 'marked_addresses'
+class Address(Base, AutoRepr):
+    __tablename__ = 'addresses'
 
     id = Column(Integer, primary_key=True)
     address = Column(Text, unique=True)
-
-    def __init__(self, address: str) -> None:
-        self.address = address
-
-
-class ReportedAddress(Base, AutoRepr):
-    __tablename__ = 'reported_addresses'
-
-    id = Column(Integer, primary_key=True)
-    address = Column(Text)
-    issue_id = Column(Integer)
-
-    def __init__(self, address: str, issue_id: int) -> None:
-        self.address = address
-        self.issue_id = issue_id
-
-
-class CheckingAddress(Base, AutoRepr):
-    __tablename__ = 'checking_addresses'
-
-    id = Column(Integer, primary_key=True)
-    address = Column(Text, unique=True)
-    marked_as_sybil = Column(Boolean)
-    number_of_reports = Column(Integer)
-    issue_ids = Column(Text)
+    proxy = Column(Text)
+    is_eligible = Column(Boolean)
+    drop_amount = Column(Float)
+    number_of_txs = Column(Integer)
+    number_of_networks = Column(Integer)
+    top_network = Column(Text)
+    top_protocol = Column(Text)
 
     def __init__(
-            self, address: str, marked_as_sybil: bool = False, number_of_reports: bool = 0, issue_ids: str = ''
+            self, address: str, proxy: Optional[str] = None, is_eligible: bool = False, drop_amount: bool = 0.0,
+            number_of_txs: int = 0, number_of_networks: int = 0, top_network: Optional[str] = None,
+            top_protocol: Optional[str] = None
     ) -> None:
         self.address = address
-        self.marked_as_sybil = marked_as_sybil
-        self.number_of_reports = number_of_reports
-        self.issue_ids = issue_ids
+        self.proxy = proxy
+        self.is_eligible = is_eligible
+        self.drop_amount = drop_amount
+        self.number_of_txs = number_of_txs
+        self.number_of_networks = number_of_networks
+        self.top_network = top_network
+        self.top_protocol = top_protocol

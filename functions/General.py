@@ -5,7 +5,7 @@ from openpyxl.worksheet.worksheet import Worksheet
 
 from data import config
 from utils.db_api.database import db
-from utils.db_api.models import CheckingAddress
+from utils.db_api.models import Address
 from utils.miscellaneous.read_spreadsheet import read_spreadsheet
 
 
@@ -16,8 +16,9 @@ class General:
             imported = 0
             for row in read_spreadsheet(path=config.ADDRESSES_FILE, sheet_name='Addresses'):
                 address = row.get('address')
+                proxy = row.get('proxy')
                 if address:
-                    db.insert(CheckingAddress(address=address.lower()))
+                    db.insert(Address(address=address, proxy=proxy))
                     imported += 1
 
             print(f'{config.LIGHTGREEN_EX}{imported}{config.RESET_ALL} addresses have been imported.')
@@ -29,7 +30,7 @@ class General:
     @staticmethod
     def export_addresses() -> None:
         try:
-            checking_addresses = list(db.execute('SELECT * FROM checking_addresses'))
+            checking_addresses = list(db.execute('SELECT * FROM addresses'))
             if checking_addresses:
                 spreadsheet = load_workbook(config.ADDRESSES_FILE)
                 if 'Results' in spreadsheet:
@@ -37,7 +38,7 @@ class General:
 
                 sheet: Worksheet = spreadsheet.create_sheet('Results')
                 for column, header in enumerate(
-                        ['n'] + list(db.execute('SELECT * FROM checking_addresses').keys())[1:]
+                        ['n'] + list(db.execute('SELECT * FROM addresses').keys())[1:]
                 ):
                     sheet.cell(row=1, column=column + 1).value = header
 

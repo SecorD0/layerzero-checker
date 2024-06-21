@@ -62,12 +62,11 @@
 1. Download an EXE file from the [releases page](https://github.com/SecorD0/layerzero-checker/releases).
 2. Create a folder and put the EXE file into it.
 3. Run the program.
-4. Enter `1` and press `Enter` to parse data about sybil addresses.
-5. Insert addresses to be checked into the `addresses.xlsx` spreadsheet, save and close it.
-6. Run the program again.
-7. Enter `2` and press `Enter` to check specified addresses if they are sybil. 
-8. Open the `addresses.xlsx` spreadsheet and switch to the `Results` sheet to view the result of the program.
-9. Delete the `files` directory.
+4. Open the spreadsheet named `addresses.xlsx`, fill in, save and close it. It's mandatory to specify:
+- `address`.
+5. Enter `1` and press `Enter` to check accounts for drop eligibility.
+6. If there are still unchecked addresses left, wait a while or refresh the proxy list and run the check again.
+7. Open the `addresses.xlsx` spreadsheet and switch to the `Results` sheet to view the results of the program.
 
 
 <h2><p align="center">Docker (image)</p></h2>
@@ -80,15 +79,11 @@
 ```sh
 docker run -it --rm -v $HOME/layerzero-checker/files:/program/files --name layerzero-checker ghcr.io/secord0/layerzero-checker:main
 ```
-3. Enter `1` and press `Enter` to parse data about sybil addresses.
-4. Insert addresses to be checked into the `addresses.xlsx` spreadsheet, save and close it.
-5. Run the program again:
-```sh
-docker run -it --rm -v $HOME/layerzero-checker/files:/program/files --name layerzero-checker ghcr.io/secord0/layerzero-checker:main
-```
-6. Enter `2` and press `Enter` to check specified addresses if they are sybil. 
-7. Open the `addresses.xlsx` spreadsheet and switch to the `Results` sheet to view the result of the program.
-8. Delete the `files` directory.
+3. Open the spreadsheet named `addresses.xlsx`, fill in, save and close it. It's mandatory to specify:
+- `address`.
+4. Enter `1` and press `Enter` to check accounts for drop eligibility.
+5. If there are still unchecked addresses left, wait a while or refresh the proxy list and run the check again.
+6. Open the `addresses.xlsx` spreadsheet and switch to the `Results` sheet to view the results of the program.
 
 
 <h2><p align="center">Docker (building)</p></h2>
@@ -113,15 +108,11 @@ docker build -t layerzero-checker .
 ```sh
 docker run -it --rm -v $HOME/layerzero-checker/:/program --name layerzero-checker layerzero-checker
 ```
-6. Enter `1` and press `Enter` to parse data about sybil addresses.
-7. Insert addresses to be checked into the `addresses.xlsx` spreadsheet, save and close it.
-8. Run the program again:
-```sh
-docker run -it --rm -v $HOME/layerzero-checker/:/program --name layerzero-checker layerzero-checker
-```
-9. Enter `2` and press `Enter` to check specified addresses if they are sybil. 
-10. Open the `addresses.xlsx` spreadsheet and switch to the `Results` sheet to view the result of the program.
-11. Delete the `files` directory.
+6. Open the spreadsheet named `addresses.xlsx`, fill in, save and close it. It's mandatory to specify:
+- `address`.
+7. Enter `1` and press `Enter` to check accounts for drop eligibility.
+8. If there are still unchecked addresses left, wait a while or refresh the proxy list and run the check again.
+9. Open the `addresses.xlsx` spreadsheet and switch to the `Results` sheet to view the results of the program.
 
 
 <h2><p align="center">Source code</p></h2>
@@ -141,12 +132,11 @@ cd layerzero-checker
 pip install -r requirements.txt
 ```
 6. Run the `app.py`.
-7. Enter `1` and press `Enter` to parse data about sybil addresses.
-8. Insert addresses to be checked into the `addresses.xlsx` spreadsheet, save and close it.
-9. Run the `app.py` again.
-10. Enter `2` and press `Enter` to check specified addresses if they are sybil. 
-11. Open the `addresses.xlsx` spreadsheet and switch to the `Results` sheet to view the result of the program.
-12. Delete the `files` directory.
+7. Open the spreadsheet named `addresses.xlsx`, fill in, save and close it. It's mandatory to specify:
+- `address`.
+8. Enter `1` and press `Enter` to check accounts for drop eligibility.
+9. If there are still unchecked addresses left, wait a while or refresh the proxy list and run the check again.
+10. Open the `addresses.xlsx` spreadsheet and switch to the `Results` sheet to view the results of the program.
 
 
 ⠀If you want to build the EXE file by yourself:
@@ -156,7 +146,7 @@ pip install pyinstaller
 ```
 - Build the EXE file:
 ```sh
-pyinstaller app.py -Fn layerzero-checker -i images/icons/app.ico --add-binary "images/icons;images/icons"
+pyinstaller app.py -Fn layerzero-checker -i images/icons/app.ico --add-binary "images/icons;images/icons" --collect-datas fake_useragent
 ```
 
 

@@ -1,10 +1,10 @@
+import asyncio
 import logging
 
 from utils.miscellaneous.create_files import create_files
 from data import config
 from data.models import ProgramAction
-from functions.check import check
-from functions.parse import parse
+from functions.find import find
 
 if __name__ == '__main__':
     print(f'\nSoftware version: {config.GREEN}{config.VERSION}{config.RESET_ALL}\n')
@@ -12,17 +12,14 @@ if __name__ == '__main__':
     while True:
         action = None
         print('''Select the action:
-1) Parse data about sybil addresses.
-2) Check specified addresses if they are sybil.
-3) Exit.''')
+1) Find eligible addresses.
+2) Exit.''')
         try:
             action = int(input('> '))
+            loop = asyncio.get_event_loop()
             print()
-            if action == ProgramAction.Parse:
-                parse()
-
-            elif action == ProgramAction.Check:
-                check()
+            if action == ProgramAction.Find:
+                find(loop=loop)
 
             else:
                 break

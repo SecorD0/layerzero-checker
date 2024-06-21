@@ -2,12 +2,12 @@ from typing import List
 
 from pretty_utils.databases import sqlalchemy_
 
-from utils.db_api.models import Base, CheckingAddress
+from utils.db_api.models import Base, Address
 
 
 # --- Functions
-def get_checking_addresses() -> List[CheckingAddress]:
-    return db.all(CheckingAddress)
+def get_addresses() -> List[Address]:
+    return db.all(Address)
 
 
 # --- Miscellaneous
