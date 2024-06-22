@@ -64,9 +64,10 @@
 3. Run the program.
 4. Open the spreadsheet named `addresses.xlsx`, fill in, save and close it. It's mandatory to specify:
 - `address`.
-5. Enter `1` and press `Enter` to check accounts for drop eligibility.
-6. If there are still unchecked addresses left, wait a while or refresh the proxy list and run the check again.
-7. Open the `addresses.xlsx` spreadsheet and switch to the `Results` sheet to view the results of the program.
+5. Fill in the `proxies.txt` file with proxies for random selection.
+6. Enter `1` and press `Enter` to check accounts for drop eligibility.
+7. If there are still unchecked addresses left, wait a while or refresh the proxy list and run the check again.
+8. Open the `addresses.xlsx` spreadsheet and switch to the `Results` sheet to view the results of the program.
 
 
 <h2><p align="center">Docker (image)</p></h2>
@@ -81,9 +82,10 @@ docker run -it --rm -v $HOME/layerzero-checker/files:/program/files --name layer
 ```
 3. Open the spreadsheet named `addresses.xlsx`, fill in, save and close it. It's mandatory to specify:
 - `address`.
-4. Enter `1` and press `Enter` to check accounts for drop eligibility.
-5. If there are still unchecked addresses left, wait a while or refresh the proxy list and run the check again.
-6. Open the `addresses.xlsx` spreadsheet and switch to the `Results` sheet to view the results of the program.
+4. Fill in the `proxies.txt` file with proxies for random selection.
+5. Enter `1` and press `Enter` to check accounts for drop eligibility.
+6. If there are still unchecked addresses left, wait a while or refresh the proxy list and run the check again.
+7. Open the `addresses.xlsx` spreadsheet and switch to the `Results` sheet to view the results of the program.
 
 
 <h2><p align="center">Docker (building)</p></h2>
@@ -110,9 +112,10 @@ docker run -it --rm -v $HOME/layerzero-checker/:/program --name layerzero-checke
 ```
 6. Open the spreadsheet named `addresses.xlsx`, fill in, save and close it. It's mandatory to specify:
 - `address`.
-7. Enter `1` and press `Enter` to check accounts for drop eligibility.
-8. If there are still unchecked addresses left, wait a while or refresh the proxy list and run the check again.
-9. Open the `addresses.xlsx` spreadsheet and switch to the `Results` sheet to view the results of the program.
+7. Fill in the `proxies.txt` file with proxies for random selection.
+8. Enter `1` and press `Enter` to check accounts for drop eligibility.
+9. If there are still unchecked addresses left, wait a while or refresh the proxy list and run the check again.
+10. Open the `addresses.xlsx` spreadsheet and switch to the `Results` sheet to view the results of the program.
 
 
 <h2><p align="center">Source code</p></h2>
@@ -134,9 +137,10 @@ pip install -r requirements.txt
 6. Run the `app.py`.
 7. Open the spreadsheet named `addresses.xlsx`, fill in, save and close it. It's mandatory to specify:
 - `address`.
-8. Enter `1` and press `Enter` to check accounts for drop eligibility.
-9. If there are still unchecked addresses left, wait a while or refresh the proxy list and run the check again.
-10. Open the `addresses.xlsx` spreadsheet and switch to the `Results` sheet to view the results of the program.
+8. Fill in the `proxies.txt` file with proxies for random selection.
+9. Enter `1` and press `Enter` to check accounts for drop eligibility.
+10. If there are still unchecked addresses left, wait a while or refresh the proxy list and run the check again.
+11. Open the `addresses.xlsx` spreadsheet and switch to the `Results` sheet to view the results of the program.
 
 
 ⠀If you want to build the EXE file by yourself:
